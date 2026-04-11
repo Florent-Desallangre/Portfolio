@@ -83,24 +83,25 @@
 }
 
 .dark {
-    --background: oklch(0.145 0.008 326);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.212 0.019 322.12);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.212 0.019 322.12);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.452 0.211 324.591);
-    --primary-foreground: oklch(0.977 0.017 320.058);
-    --secondary: oklch(0.274 0.006 286.033);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.263 0.024 320.12);
-    --muted-foreground: oklch(0.711 0.019 323.02);
-    --accent: oklch(0.263 0.024 320.12);
-    --accent-foreground: oklch(0.985 0 0);
+    /* Base cosmic (#020308) + lisibilité corps type slate-400 */
+    --background: oklch(0.09 0.02 270);
+    --foreground: oklch(0.99 0.005 270);
+    --card: oklch(0.14 0.02 285);
+    --card-foreground: oklch(0.99 0.005 270);
+    --popover: oklch(0.14 0.02 285);
+    --popover-foreground: oklch(0.99 0.005 270);
+    --primary: oklch(0.63 0.22 303);
+    --primary-foreground: oklch(0.99 0.01 270);
+    --secondary: oklch(0.2 0.03 285);
+    --secondary-foreground: oklch(0.96 0.01 270);
+    --muted: oklch(0.2 0.03 285);
+    --muted-foreground: oklch(0.68 0.03 250);
+    --accent: oklch(0.22 0.04 300);
+    --accent-foreground: oklch(0.99 0.005 270);
     --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.542 0.034 322.5);
+    --border: oklch(1 0 0 / 12%);
+    --input: oklch(1 0 0 / 14%);
+    --ring: oklch(0.65 0.2 300);
     --chart-1: oklch(0.837 0.128 66.29);
     --chart-2: oklch(0.705 0.213 47.604);
     --chart-3: oklch(0.646 0.222 41.116);
@@ -117,13 +118,95 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+    * {
+        @apply border-border outline-ring/50;
     }
-  body {
-    @apply bg-background text-foreground;
+    body {
+        @apply bg-background text-foreground;
     }
-  html {
-    @apply font-sans;
+    html {
+        @apply scroll-smooth font-sans;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
+}
+
+@layer utilities {
+    .portfolio-bg {
+        background:
+            radial-gradient(ellipse 90% 70% at 10% -10%, color-mix(in oklch, oklch(0.55 0.25 300) 42%, transparent), transparent 55%),
+            radial-gradient(ellipse 70% 50% at 95% 5%, color-mix(in oklch, oklch(0.65 0.2 55) 18%, transparent), transparent 50%),
+            radial-gradient(ellipse 80% 60% at 50% 110%, color-mix(in oklch, oklch(0.45 0.18 270) 28%, transparent), transparent 55%),
+            radial-gradient(ellipse 50% 40% at 70% 40%, color-mix(in oklch, oklch(0.4 0.15 260) 12%, transparent), transparent 45%),
+            linear-gradient(180deg, oklch(0.09 0.025 270) 0%, oklch(0.1 0.03 280) 45%, oklch(0.08 0.02 270) 100%);
+    }
+
+    .glass-card {
+        border-color: color-mix(in oklch, oklch(0.75 0.15 300) 35%, transparent);
+        background: color-mix(in oklch, oklch(0.18 0.03 285) 68%, transparent);
+        box-shadow:
+            0 0 0 1px color-mix(in oklch, white 8%, transparent),
+            0 12px 40px color-mix(in oklch, oklch(0.2 0.1 300) 45%, transparent);
+        @apply rounded-2xl border shadow-md backdrop-blur-xl;
+    }
+
+    .portfolio-kicker {
+        color: color-mix(in oklch, oklch(0.85 0.14 75) 92%, transparent);
+        text-shadow: 0 0 24px color-mix(in oklch, oklch(0.7 0.15 55) 35%, transparent);
+    }
+
+    .text-gradient-cosmic {
+        background-image: linear-gradient(105deg, #c084fc 0%, #e879f9 38%, #fb923c 72%, #f97316 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .portfolio-section {
+        @apply m-0 w-full rounded-l-none p-0;
+    }
+
+    /* Aligné sur le hero : même gouttière horizontale pour tout le contenu principal */
+    .portfolio-section-px {
+        @apply px-6 md:px-8 lg:px-10;
+    }
+
+    .portfolio-grid {
+        @apply grid grid-cols-1 gap-4 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-5;
+    }
+
+    .accent-glow {
+        box-shadow:
+            0 0 0 1px color-mix(in oklch, var(--primary) 40%, transparent),
+            0 0 40px color-mix(in oklch, var(--primary) 20%, transparent);
+    }
+
+    /** Léger flottement du vortex (hero) */
+    @keyframes vortex-float {
+        0%,
+        100% {
+            transform: translate3d(0, 0, 0) rotate(0deg);
+        }
+        33% {
+            transform: translate3d(0.35rem, -0.4rem, 0) rotate(0.35deg);
+        }
+        66% {
+            transform: translate3d(-0.3rem, 0.3rem, 0) rotate(-0.28deg);
+        }
+    }
+
+    .animate-vortex-float {
+        animation: vortex-float 16s ease-in-out infinite;
+        will-change: transform;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .animate-vortex-float {
+            animation: none;
+        }
     }
 }

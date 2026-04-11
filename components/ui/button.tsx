@@ -10,6 +10,10 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/80",
+        cosmic:
+          "!h-auto min-h-10 rounded-full border-0 bg-gradient-to-r from-violet-600 via-fuchsia-500 to-orange-500 px-6 py-2.5 text-sm font-semibold text-white shadow-[0_0_28px_rgba(168,85,247,0.35)] hover:brightness-110 hover:shadow-[0_0_36px_rgba(249,115,22,0.28)] focus-visible:ring-orange-400/40",
+        cosmicOutline:
+          "!h-auto min-h-10 rounded-full border border-white/25 bg-transparent px-6 py-2.5 text-sm font-medium text-foreground hover:border-white/40 hover:bg-white/5 focus-visible:ring-white/30 dark:border-white/20 dark:hover:bg-white/5",
         outline:
           "border-border hover:bg-input/50 hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:bg-input/30",
         secondary:
