@@ -14,7 +14,7 @@ export function ProjectsSection({ withCta = true }: { withCta?: boolean }) {
                 </div>
                 {withCta ? (
                     <Button variant="cosmicOutline" className="!min-h-10 py-2 text-sm" asChild>
-                        <Link href="/projects">Voir tout</Link>
+                        <Link href="/#projects">Voir tout</Link>
                     </Button>
                 ) : null}
             </div>

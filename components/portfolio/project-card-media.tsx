@@ -1,6 +1,7 @@
 'use client';
 
 import { Play } from '@phosphor-icons/react';
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
 import type { PortfolioPreviewMedia } from '@/lib/portfolio/content';
@@ -56,10 +57,12 @@ export function ProjectCardMedia({ title, previewMedia, isHovered }: ProjectCard
     if (kind === 'image') {
         return (
             <div className={shellClass} aria-label={`Aperçu du projet : ${title}`}>
-                <img
-                    src={src}
+                <Image
+                    src={src!}
                     alt={`Capture d’écran — ${title}`}
-                    className="h-full w-full object-contain"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 1280px) 100vw, 33vw"
                     decoding="async"
                 />
             </div>
@@ -109,11 +112,13 @@ export function ProjectCardMedia({ title, previewMedia, isHovered }: ProjectCard
             }
         >
             {isHovered ? (
-                <img
-                    src={src}
+                <Image
+                    src={src!}
                     alt={`Aperçu animé du projet : ${title}`}
-                    className="h-full w-full object-contain"
-                    decoding="async"
+                    fill
+                    className="object-contain"
+                    unoptimized
+                    sizes="(max-width: 1280px) 100vw, 33vw"
                 />
             ) : (
                 <div className="flex h-full min-h-[7rem] items-center justify-center px-2">

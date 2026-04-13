@@ -18,7 +18,7 @@ export function ContactSection() {
                         </p>
                         <p className="text-muted-foreground text-sm">Toujours partant pour discuter de projets passionnants et de nouvelles opportunités.</p>
                         <Button variant="cosmic" asChild>
-                            <Link href="/contact">Discutons</Link>
+                            <Link href="/#contact">Discutons</Link>
                         </Button>
                     </div>
                     <div className="space-y-3 text-sm">

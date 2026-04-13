@@ -41,13 +41,20 @@ Objectif: clean code + wow effect.`,
     notes: `Notes rapides:
 
 - Ajouter une section "Testimonials"
-- Créer une page /projects
+- Pages dédiées projets / contact au besoin
 - Intégrer Three.js pour les planètes
 - Ajouter des micro-interactions
 - Optimiser Lighthouse performance`,
 } as const;
 
 export type PanelTab = keyof typeof panelContent;
+
+/** Labels des onglets du panneau code (hero / carte interactive). */
+export const panelTabLabels = [
+    { key: 'code' as const, label: 'Code' },
+    { key: 'thoughts' as const, label: 'Pensées' },
+    { key: 'notes' as const, label: 'Notes' },
+] satisfies ReadonlyArray<{ key: PanelTab; label: string }>;
 
 /** Aperçu dans la carte projet : image statique, GIF (img) ou vidéo (voir `ProjectCardMedia`). */
 export type PortfolioPreviewMedia = {

@@ -1,53 +1,33 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import { useCallback, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
-import { VortexParticlesCanvas } from '@/components/portfolio/hero-particles-canvas';
+const VortexParticlesCanvas = dynamic(
+    () => import('@/components/portfolio/hero-particles-canvas').then((m) => m.VortexParticlesCanvas),
+    { ssr: false }
+);
 import { InteractivePanelCodeCard } from '@/components/portfolio/interactive-panel-code-card';
 import { Button } from '@/components/ui/button';
-import { type PanelTab } from '@/lib/portfolio/content';
-import vortexImage from '../../../../assets/vortex.png';
+import { usePortfolioCodePanelState } from '@/lib/hooks/use-portfolio-code-panel-state';
 
 export function HeroSection() {
-    const [activeTab, setActiveTab] = useState<PanelTab>('code');
-    const [terminalLine, setTerminalLine] = useState('npm run dev');
-    const [fadeIn, setFadeIn] = useState(true);
     /** Incrémenté avec « ready to deploy » pour déclencher l’effet big-bang sur les particules. */
     const [burstSignal, setBurstSignal] = useState(0);
-    const tabLabels = useMemo<{ key: PanelTab; label: string }[]>(
-        () => [
-            { key: 'code', label: 'Code' },
-            { key: 'thoughts', label: 'Pensées' },
-            { key: 'notes', label: 'Notes' },
-        ],
-        []
-    );
-
-    const handleTab = (tab: PanelTab) => {
-        setFadeIn(false);
-        setTimeout(() => {
-            setActiveTab(tab);
-            setFadeIn(true);
-        }, 120);
-    };
-
-    const handleRun = () => {
-        setTerminalLine('🚀 Building...');
-
-        setTimeout(() => {
-            setTerminalLine('✅ Build complete - ready to deploy');
-            setBurstSignal((n) => n + 1);
-        }, 900);
-
-        setTimeout(() => {
-            setTerminalLine('npm run dev');
-        }, 2400);
-    };
+    const onBuildComplete = useCallback(() => {
+        setBurstSignal((n) => n + 1);
+    }, []);
+    const { activeTab, fadeIn, terminalLine, tabLabels, handleTab, handleRun } = usePortfolioCodePanelState({
+        onBuildComplete,
+    });
 
     return (
-        <section className="relative overflow-visible px-6 pt-6 pb-2 md:px-8 md:pt-8 md:pb-3 lg:px-10 lg:pt-10 lg:pb-3">
+        <section
+            id="accueil"
+            className="relative overflow-visible px-6 pt-6 pb-2 md:px-8 md:pt-8 md:pb-3 lg:px-10 lg:pt-10 lg:pb-3"
+        >
             <div className="relative z-10 space-y-4">
                 {/* Vortex hors flux : particules orange/violet calées sur l image */}
                 <div
@@ -58,7 +38,7 @@ export function HeroSection() {
                     <div className="animate-vortex-float relative w-[62vw] max-w-[1050px]">
                         <VortexParticlesCanvas burstSignal={burstSignal} />
                         <Image
-                            src={vortexImage}
+                            src="/vortex.png"
                             alt=""
                             width={1800}
                             height={1800}
@@ -80,10 +60,10 @@ export function HeroSection() {
                         </p>
                         <div className="mt-7 flex flex-wrap gap-3">
                             <Button variant="cosmic" asChild>
-                                <Link href="/projects">Explorer mon univers</Link>
+                                <Link href="/#projects">Explorer mon univers</Link>
                             </Button>
                             <Button variant="cosmicOutline" asChild>
-                                <Link href="/contact">Me contacter</Link>
+                                <Link href="/#contact">Me contacter</Link>
                             </Button>
                         </div>
                     </div>

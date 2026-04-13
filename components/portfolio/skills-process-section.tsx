@@ -1,69 +1,7 @@
-'use client';
-
-import { Code, Compass, PenNib, RocketLaunch } from '@phosphor-icons/react';
-
+import { ProcessStepIcon } from '@/components/portfolio/process-step-icon';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { skills, processSteps } from '@/lib/portfolio/content';
-import { cn } from '@/lib/utils';
-
-const processIconBase =
-    'size-11 shrink-0 text-violet-400/85 transition-all duration-300 ease-out will-change-transform';
-
-function ProcessStepIcon({ stepId }: { stepId: string }) {
-    switch (stepId) {
-        case '01':
-            return (
-                <Compass
-                    className={cn(
-                        processIconBase,
-                        'group-hover:rotate-[22deg] group-hover:scale-110 group-hover:text-violet-300',
-                        'group-hover:drop-shadow-[0_0_14px_rgba(167,139,250,0.4)]',
-                    )}
-                    weight="duotone"
-                    aria-hidden
-                />
-            );
-        case '02':
-            return (
-                <PenNib
-                    className={cn(
-                        processIconBase,
-                        'group-hover:-translate-y-1 group-hover:translate-x-0.5 group-hover:-rotate-6 group-hover:scale-110 group-hover:text-violet-300',
-                        'group-hover:drop-shadow-[0_0_14px_rgba(167,139,250,0.4)]',
-                    )}
-                    weight="duotone"
-                    aria-hidden
-                />
-            );
-        case '03':
-            return (
-                <Code
-                    className={cn(
-                        processIconBase,
-                        'group-hover:scale-110 group-hover:text-violet-300',
-                        'group-hover:drop-shadow-[0_0_14px_rgba(56,189,248,0.35)]',
-                    )}
-                    weight="duotone"
-                    aria-hidden
-                />
-            );
-        case '04':
-            return (
-                <RocketLaunch
-                    className={cn(
-                        processIconBase,
-                        'group-hover:-translate-y-2 group-hover:translate-x-0.5 group-hover:-rotate-12 group-hover:scale-110 group-hover:text-violet-300',
-                        'group-hover:drop-shadow-[0_0_16px_rgba(167,139,250,0.45)]',
-                    )}
-                    weight="duotone"
-                    aria-hidden
-                />
-            );
-        default:
-            return null;
-    }
-}
+import { processSteps, skills } from '@/lib/portfolio/content';
 
 export function SkillsProcessSection() {
     return (
@@ -98,7 +36,6 @@ export function SkillsProcessSection() {
                             key={step.step}
                             className="group bg-muted/15 border-border/80 hover:border-violet-400/45 flex h-full min-h-[240px] flex-col items-center rounded-xl border p-5 py-6 text-center transition-[border-color,box-shadow] duration-300 ease-out hover:shadow-md sm:min-h-[260px] lg:min-h-[280px] lg:p-6 lg:py-8"
                         >
-                            {/* Bloc fixe en tête : même structure sur chaque carte → titres alignés sur la ligne */}
                             <div className="flex w-full shrink-0 flex-col items-center">
                                 <p className="text-primary mb-2 w-full text-base font-semibold tracking-[0.16em] lg:mb-3 lg:text-lg">
                                     {step.step}
