@@ -7,7 +7,7 @@ export function SkillsProcessSection() {
     return (
         <section className="portfolio-section-px grid gap-4 xl:grid-cols-2 md:px-8">
             <Card id="skills" className="glass-card scroll-mt-6 py-0">
-                <CardHeader>
+                <CardHeader className="pt-4">
                     <CardTitle className="text-xl">Compétences</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4 pb-6">
@@ -27,7 +27,7 @@ export function SkillsProcessSection() {
             </Card>
 
             <Card id="process" className="glass-card scroll-mt-6 py-0">
-                <CardHeader>
+                <CardHeader className="pt-4">
                     <CardTitle className="text-xl">Mon process</CardTitle>
                 </CardHeader>
                 <CardContent className="grid gap-4 pb-6 sm:grid-cols-2 md:grid-cols-4 md:gap-5 md:items-stretch">

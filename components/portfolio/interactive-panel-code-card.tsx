@@ -18,7 +18,7 @@ type InteractivePanelCodeCardProps = {
     terminalLine: string;
     onTabChange: (tab: PanelTab) => void;
     onRun: () => void;
-    /** Hero : taille figée (~433×710) alignée sur l’onglet Code */
+    /** Hero : largeur max ~433px ; hauteur fixe (évite les variations svh/dvh au scroll mobile) */
     compact?: boolean;
 };
 
@@ -44,8 +44,20 @@ export function InteractivePanelCodeCard({
         <div
             className={cn(
                 'glass-card box-border flex shrink-0 flex-col overflow-hidden p-4 lg:p-5',
-                compact ? 'h-[710px] w-full max-w-[433px]' : 'h-[36rem] w-full min-w-0 max-w-[36rem] lg:h-[38rem]'
+                compact
+                    ? 'w-full max-w-[433px] max-lg:flex-none'
+                    : 'h-[36rem] w-full min-w-0 max-w-[36rem] lg:h-[38rem]'
             )}
+            style={
+                compact
+                    ? {
+                          height: 710,
+                          minHeight: 710,
+                          maxHeight: 'none',
+                          flexShrink: 0,
+                      }
+                    : undefined
+            }
         >
             <div className="mb-3 shrink-0 flex flex-wrap gap-2">
                 {tabLabels.map((tab) => (

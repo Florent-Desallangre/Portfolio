@@ -66,6 +66,12 @@ export type PortfolioPreviewMedia = {
     poster?: string;
 };
 
+/** Contenu affiché au verso de la carte projet (après rotation). */
+export type PortfolioProjectFlipDetails = {
+    paragraphs: readonly string[];
+    bullets?: readonly string[];
+};
+
 export type PortfolioProject = {
     slug: string;
     tag: string;
@@ -75,6 +81,7 @@ export type PortfolioProject = {
     points: readonly string[];
     status: string;
     previewMedia?: PortfolioPreviewMedia;
+    flipDetails: PortfolioProjectFlipDetails;
 };
 
 export const projects: readonly PortfolioProject[] = [
@@ -91,6 +98,16 @@ export const projects: readonly PortfolioProject[] = [
             src: '/projects/demo-spaceShift.mp4',
             kind: 'video',
         },
+        flipDetails: {
+            paragraphs: [
+                'Prototype jouable centré sur le pilotage arcade : physique du vaisseau, caméra suivie et boucle mission / score.',
+                'La progression repose sur des crédits gagnés en mission pour débloquer upgrades et personnaliser l’expérience.',
+            ],
+            bullets: [
+                'Scène Three.js avec éclairage et post-traitement légers pour lisibilité en mouvement',
+                'Boucle de jeu modulaire : missions course, poursuite et survie avec paramètres ajustables',
+            ],
+        },
     },
     {
         slug: 'risk-detection',
@@ -105,6 +122,16 @@ export const projects: readonly PortfolioProject[] = [
             src: '/projects/risk-detection-preview.png',
             kind: 'image',
         },
+        flipDetails: {
+            paragraphs: [
+                'Chaîne de traitement vidéo orientée robustesse : lissage temporel des détections pour limiter les faux positifs en conditions réelles.',
+                'Les règles métier combinent plusieurs frames pour décider quand une situation devient « à risque » et mérite une alerte ou une capture.',
+            ],
+            bullets: [
+                'MediaPipe / OpenCV pour squelette et zones d’intérêt',
+                'Export d’événements et captures pour analyse ou supervision',
+            ],
+        },
     },
     {
         slug: 'restaurant-manager',
@@ -118,6 +145,16 @@ export const projects: readonly PortfolioProject[] = [
         previewMedia: {
             src: '/projects/restaurantManagerDemo.mov',
             kind: 'video',
+        },
+        flipDetails: {
+            paragraphs: [
+                'Outil métier pensé pour le service en salle et la cuisine : réservations, plan de salle et commandes reliées au même référentiel.',
+                'Le menu et les options tarifaires sont modélisés pour éviter les erreurs de saisie et accélérer la prise de commande.',
+            ],
+            bullets: [
+                'Plan de salle éditable et statuts de table en temps réel',
+                'Parcours mobile pour serveurs et vue cuisine pour la préparation',
+            ],
         },
     },
 ];

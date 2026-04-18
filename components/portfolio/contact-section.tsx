@@ -7,7 +7,7 @@ export function ContactSection() {
     return (
         <section id="contact" className="portfolio-section-px scroll-mt-6 md:px-8">
             <Card className="glass-card py-0">
-                <CardHeader>
+                <CardHeader className="pt-4">
                     <CardTitle className="text-xl">Créons ensemble</CardTitle>
                 </CardHeader>
                 <CardContent className="grid gap-6 pb-6 md:grid-cols-2">
@@ -24,7 +24,7 @@ export function ContactSection() {
                     <div className="space-y-3 text-sm">
                         <div className="rounded-lg border p-3">
                             <p className="text-muted-foreground text-[10px] tracking-[0.2em]">EMAIL</p>
-                            <p className="font-medium">hello@votre-nom.dev</p>
+                            <p className="font-medium">florent.desallangre@yahoo.fr</p>
                         </div>
                         <div className="rounded-lg border p-3">
                             <p className="text-muted-foreground text-[10px] tracking-[0.2em]">LOCALISATION</p>

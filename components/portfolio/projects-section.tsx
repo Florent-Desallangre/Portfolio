@@ -7,7 +7,7 @@ import { projects } from '@/lib/portfolio/content';
 export function ProjectsSection({ withCta = true }: { withCta?: boolean }) {
     return (
         <section id="projects" className="portfolio-section-px scroll-mt-6 -mt-2 space-y-5 pt-0 sm:-mt-3 md:px-8">
-            <div className="flex items-end justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                     <h2 className="portfolio-kicker md:text-2xl font-semibold tracking-[0.28em] uppercase">Mon univers</h2>
                     <p className="text-muted-foreground mt-1 text-base">Trois projets représentatifs de mon approche produit et technique.</p>
